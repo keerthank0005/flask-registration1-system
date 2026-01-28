@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>THE GREEN BOWL— Menu</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #FF6F61;
+            --accent-dark: #E85B4C;
+            --muted: #6c757d;
+            --card-bg: #fff;
+            --bg: linear-gradient(180deg, #fff 0%, #fff9f7 100%);
+        }
+
+        body {
+            background: var(--bg);
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #222;
+        }
+
+        /* HERO */
+        .hero {
+            background-image: url('https://static.wixstatic.com/media/66fd32_ae5acf9c094e4ef8bc51c17981ba5c00~mv2.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 1000px;
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
+            color: rgb(10, 10, 10);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.15));
+        }
+
+        .hero .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-weight: 700;
+            font-size: 2.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            opacity: 0.95;
+        }
+
+        /* Menu grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .dish-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(18, 22, 28, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform .18s ease, box-shadow .18s ease;
+            min-height: 320px;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(18, 22, 28, 0.10);
+        }
+
+        .dish-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dish-body {
+            padding: 0.95rem 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dish-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: .5rem;
+            margin-bottom: 6px;
+        }
+
+        .dish-title h5 {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .dish-desc {
+            color: var(--muted);
+            margin-bottom: 8px;
+            font-size: 0.94rem;
+            flex: 1;
+        }
+
+        .dish-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            gap: 8px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--accent-dark);
+        }
+
+        .badge-veg {
+            background: linear-gradient(90deg, #6bd389, #3db46b);
+            color: white;
+            padding: .25rem .5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: .78rem;
+        }
+
+        :root {
+            --accent: #FF6F61;
+            --accent-dark: #E85B4C;
+            --muted: #6c757d;
+            --card-bg: #fff;
+            --bg: linear-gradient(180deg, #fff 0%, #fff9f7 100%);
+        }
+
+        /* Dark mode overrides */
+        body.dark-mode {
+            --accent: #FF8A65;
+            --accent-dark: #FF5722;
+            --muted: #ccc;
+            --card-bg: #1e1e1e;
+            --bg: linear-gradient(180deg, #121212 0%, #1c1c1c 100%);
+            color: #eee;
+        }
+
+        body.dark-mode .dish-card {
+            background: var(--card-bg);
+            color: #eee;
+        }
+
+        body.dark-mode .card {
+            background: var(--card-bg);
+            color: #eee;
+        }
+
+        body.dark-mode .btn-outline-primary {
+            border-color: #FF5722;
+            color: #FF5722;
+        }
+
+        body.dark-mode .btn-outline-secondary {
+            border-color: #aaa;
+            color: #aaa;
+        }
+
+        body.dark-mode .navbar {
+            background: #1e1e1e !important;
+        }
+
+        /* Category chips */
+        .category-btns .btn {
+            margin-right: 6px;
+            margin-bottom: 6px;
+            border-radius: 999px;
+        }
+
+        /* Right column */
+        .side-panel {
+            position: sticky;
+            top: 1rem;
+        }
+
+        /* Reviews */
+        .review {
+            border-radius: 10px;
+            background: #fff;
+            padding: .85rem;
+            margin-bottom: .6rem;
+            box-shadow: 0 6px 16px rgba(20, 24, 30, 0.04);
+        }
+
+        /* Cart */
+        .cart-list {
+            max-height: 240px;
+            overflow: auto;
+        }
+
+        /* Footer Panda strip */
+        .panda-strip {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .panda-strip img {
+            width: 88px;
+            height: 88px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        /* small screens */
+        @media (max-width:576px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .dish-card img {
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-4">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-3">
+            <div class="container-fluid px-0">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=80&auto=format&fit=crop"
+                        alt="logo" width="44" height="44" class="rounded">
+                    <div>
+                        <div style="font-weight:700">THE GREEN BOWL</div>
+                        <small class="text-muted" style="font-size:11px">Pure Vegetarian • Fresh • Friendly</small>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item me-2"><a class="nav-link" href="#menu">Menu</a></li>
+                        <li class="nav-item me-2"><a class="nav-link" href="#reviews">Reviews</a></li>
+                        <li class="nav-item me-2"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item me-2"><button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#reserveModal">Reserve</button></li>
+                        <li class="nav-item">
+                            <a class="btn btn-danger" href="tel:+911234567890"><i class="bi bi-telephone"></i> +91 12345
+                                67890</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <button class="btn btn-outline-dark" id="themeToggle">Dark Mode</button>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <div class="hero mb-4">
+            <div class="hero-content container">
+                <h1>THE GREEN BOWL</h1>
+                <p class="lead">Seasonal vegetarian delights — North, South, Desserts & a playful Korean touch. Open
+                    daily for dine-in & orders.</p>
+                <div class="mt-3">
+                    <button class="btn btn-light btn-lg me-2"
+                        onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Menu</button>
+                    <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#reserveModal">Make Reservation</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- LEFT: Menu -->
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <div class="category-btns mb-2" role="tablist" aria-label="Menu categories">
+                            <button class="btn btn-sm btn-outline-secondary active" onclick="filterCuisine('all')">Show
+                                All</button>
+                            <button class="btn btn-sm btn-outline-secondary"
+                                onclick="filterCuisine('north')">North</button>
+                            <button class="btn btn-sm btn-outline-secondary"
+                                onclick="filterCuisine('south')">South</button>
+                            <button class="btn btn-sm btn-outline-secondary"
+                                onclick="filterCuisine('dessert')">Desserts</button>
+                            <button class="btn btn-sm btn-outline-secondary"
+                                onclick="filterCuisine('korean')">Korean</button>
+                        </div>
+                        <h3 id="menu" class="mb-0">Our Pure Veg Menu</h3>
+                        <small class="text-muted">Carefully crafted dishes — all vegetarian.</small>
+                    </div>
+
+                    <div class="text-end">
+                        <div class="mb-1">Open hours: <strong>9:00 AM — 10:30 PM</strong></div>
+                        <div class="text-muted" style="font-size:0.9rem">Order online or reserve a table</div>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="mb-3">
+                    <input id="searchInput" oninput="renderMenu()" class="form-control"
+                        placeholder="Search dishes, ingredients or price (e.g., 'paneer', 'rice', '120')">
+                </div>
+
+                <!-- Menu grid -->
+                <div id="menuGrid" class="menu-grid">
+                    <!-- Dishes will be rendered by JS -->
+                </div>
+            </div>
+
+            <!-- RIGHT: Side panel -->
+            <div class="col-lg-4">
+                <div class="side-panel">
+                    <!-- Location & Hours -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Visit Us</h5>
+                            <p class="card-text mb-1"><strong>THE GREEN BOWL</strong></p>
+                            <p class="text-muted mb-1">123 Green Lane, Foodie City, India</p>
+                            <p class="mb-1"><strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a></p>
+                            <p class="mb-0"><strong>Hours:</strong><br>
+                                Mon - Sun: 9:00 AM — 10:30 PM
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cart & Ordering -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Your Order</h6>
+                            <div id="cartEmptyMsg" class="text-muted mb-2">No items yet — add dishes to start ordering.
+                            </div>
+                            <ul id="cartList" class="list-group cart-list mb-2"></ul>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <strong>Total:</strong> <span id="cartTotal">₹0</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-success w-100" id="checkoutBtn" onclick="checkout()"
+                                    disabled>Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews -->
+                    <div id="reviews" class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Reviews</h6>
+
+                            <div id="reviewsList">
+                                <!-- reviews inserted by JS -->
+                            </div>
+
+                            <hr>
+                            <h6 class="mb-2">Add a review</h6>
+                            <div class="mb-2">
+                                <input id="reviewName" class="form-control mb-2" placeholder="Your name">
+                                <textarea id="reviewText" class="form-control mb-2" rows="2"
+                                    placeholder="Your review"></textarea>
+                                <div class="d-flex gap-2 align-items-center mb-2">
+                                    <label class="mb-0">Rating:</label>
+                                    <select id="reviewRating" class="form-select form-select-sm w-auto">
+                                        <option value="5">5 ★</option>
+                                        <option value="4">4 ★</option>
+                                        <option value="3">3 ★</option>
+                                        <option value="2">2 ★</option>
+                                        <option value="1">1 ★</option>
+                                    </select>
+                                    <button class="btn btn-primary btn-sm ms-auto" onclick="addReview()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div id="contact" class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Contact Us</h6>
+                            <form onsubmit="event.preventDefault(); sendContact();">
+                                <div class="mb-2">
+                                    <input id="contactName" class="form-control" placeholder="Name" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="contactEmail" type="email" class="form-control" placeholder="Email"
+                                        required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="contactPhone" class="form-control" placeholder="Phone">
+                                </div>
+                                <div class="mb-2">
+                                    <textarea id="contactMsg" class="form-control" rows="3" placeholder="Message"
+                                        required></textarea>
+                                </div>
+                                <button class="btn btn-outline-primary w-100" type="submit">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <footer class="mt-4 text-center text-muted">
+                        <small>© <strong>THE GREEN BOWL</strong> — Pure Vegetarian. Hours: 9:00 — 10:30 • Phone: +91
+                            12345 67890</small>
+                    </footer>
+            <!-- Reservation Modal -->
+        <div class="modal fade" id="reserveModal" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content" onsubmit="event.preventDefault(); makeReservation();">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reserve a Table</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-2">
+                            <input id="resName" class="form-control" placeholder="Name" required>
+                        </div>
+                        <div class="mb-2">
+                            <input id="resPhone" class="form-control" placeholder="Phone" required>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <input id="resDate" type="date" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <input id="resTime" type="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-2 mt-2">
+                            <select id="resPeople" class="form-select">
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                                <option value="5">5 people</option>
+                                <option value="6">6+ people</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <textarea id="resNote" class="form-control" rows="2"
+                                placeholder="Notes (e.g., window table)"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Reserve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap JS (Required for modal to work) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+                <!-- Bootstrap JS + dependencies -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+                <script>
+                    /*******************************
+                     * Demo data: menu items
+                     * Each item: id, title, desc, price, cuisine, img
+                     *******************************/
+                    const themeToggle = document.getElementById('themeToggle');
+                    themeToggle.addEventListener('click', () => {
+                        document.body.classList.toggle('dark-mode');
+                        if (document.body.classList.contains('dark-mode')) {
+                            themeToggle.textContent = 'Light Mode';
+                        } else {
+                            themeToggle.textContent = 'Dark Mode';
+                        }
+                    });
+
+                    const menuItems = [
+                        // NORTH
+                        { id: 1, title: 'Paneer Butter Masala', desc: 'Soft paneer cubes in rich tomato-butter gravy', price: 220, cuisine: 'north', img: 'https://www.indianhealthyrecipes.com/wp-content/uploads/2023/07/paneer-butter-masala-recipe.jpg' },
+                        { id: 2, title: 'Butter Kulchaa', desc: 'Assorted kulchaa brushed with butter', price: 90, cuisine: 'north', img: 'https://rakskitchen.net/wp-content/uploads/2014/02/12606756265_7146a9263c_z-500x500.jpg' },
+                        { id: 3, title: 'Garlic Naan', desc: 'Assorted naans brushed with garlic butter', price: 80, cuisine: 'north', img: 'https://uptownasia.in/wp-content/uploads/2024/09/garlic-naan-01.jpg' },
+
+                        // SOUTH
+                        { id: 4, title: 'Masala Dosa', desc: 'Crispy rice dosa stuffed with spiced potato', price: 50, cuisine: 'south', img: 'https://www.bigbasket.com/media/uploads/recipe/w-l/1778_6_1.jpg' },
+                        { id: 5, title: 'Coffee and Tea', desc: 'A brewed drink prepared from roasted coffee beans and an aromatic beverage made from tea leaves ', price: 70, cuisine: 'south', img: 'https://www.bruhaspatinath.com/wp-content/uploads/2016/09/1280.jpg' },
+                        { id: 6, title: 'Idli Platter', desc: 'Steamed rice cakes served with sambar', price: 120, cuisine: 'south', img: 'https://t4.ftcdn.net/jpg/04/39/31/29/360_F_439312935_lxOEQSqasYc5GeyHKgYJXWCIFm8gmQUN.jpg' },
+
+                        // DESSERTS
+                        { id: 7, title: 'Ice-cream', desc: 'A sweetened frozen dessert made from dairy products', price: 90, cuisine: 'dessert', img: 'https://thumbs.dreamstime.com/b/various-varieties-ice-cream-cones-various-varieties-ice-cream-cones-mint-blueberry-strawberry-pistachio-cherry-158155767.jpg' },
+                        { id: 8, title: 'Chocolate cake', desc: 'Versatile dessert flavoured with melted chocolate, cocoa powder', price: 120, cuisine: 'dessert', img: 'https://assets.winni.in/product/primary/2024/3/94564.jpeg?dpr=2&w=220' },
+
+                        // KOREAN (vegetarian variants)
+                        { id: 9, title: 'Kimchi Tofu Bowl', desc: 'Mild kimchi with silken tofu & rice', price: 240, cuisine: 'korean', img: 'https://dishingouthealth.com/wp-content/uploads/2021/07/GochujangTofu_Styled3.jpg' },
+                        { id: 10, title: 'Veg Bibimbap', desc: 'Mixed vegetables, egg, gochujang over rice', price: 260, cuisine: 'korean', img: 'https://cdn.sunbasket.com/117ff54e-5234-492b-a1ec-4732bb0ea51b.jpg' },
+
+                        // More for variety
+                        { id: 11, title: 'Spring Rolls (Veg)', desc: 'Crispy veg spring rolls with sweet chili', price: 140, cuisine: 'korean', img: 'https://hot-thai-kitchen.com/wp-content/uploads/2014/10/crispy-spring-rolls-sq-new.jpg' },
+                        { id: 12, title: 'Mixed Veg Curry', desc: 'Seasonal vegetables cooked in house masala', price: 200, cuisine: 'north', img: 'https://www.thespruceeats.com/thmb/MfnEzKj-5LBRbdrD_WQ59zELEX4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-mixed-vegetable-curry-1957913-03048999db714405bfe8614c975b8a44.jpg' }
+                    ];
+
+                    // cart structure {id, qty}
+                    let cart = [];
+                    let reviews = [
+                        { name: 'Anirudh', rating: 5, text: 'Lovely food, great ambience! Must try the Paneer Butter Masala.', date: '2025-11-10' },
+                        { name: 'Kruthi', rating: 4.5, text: 'Tasty dosas and quick service.', date: '2025-11-12' }
+                    ];
+
+                    // Utility: currency display
+                    function formatCurrency(n) { return '₹' + n.toFixed(0); }
+
+                    /***********************
+                     * Render menu items
+                     ***********************/
+                    function renderMenu() {
+                        const grid = document.getElementById('menuGrid');
+                        grid.innerHTML = '';
+                        const filter = window.currentFilter || 'all';
+                        const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+
+                        let items = menuItems.filter(it => {
+                            const passFilter = (filter === 'all') || (it.cuisine === filter);
+                            const passSearch = q === '' || it.title.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q) || ('' + it.price).includes(q);
+                            return passFilter && passSearch;
+                        });
+
+                        if (items.length === 0) {
+                            grid.innerHTML = '<div class="text-muted">No dishes found for selected category or search.</div>';
+                            return;
+                        }
+
+                        items.forEach(it => {
+                            const el = document.createElement('article');
+                            el.className = 'dish-card';
+                            el.innerHTML = `\n          <img src="${it.img}" alt="${it.title}">\n          <div class="dish-body">\n            <div class="dish-title">\n              <h5>${it.title}</h5>\n              <div class="badge-veg">Veg</div>\n            </div>\n            <div class="dish-desc">${it.desc}</div>\n            <div class="dish-meta">\n              <div><span class="price">${formatCurrency(it.price)}</span></div>\n              <div class="d-flex gap-2">\n                <button class="btn btn-sm btn-outline-primary" onclick="addToCart(${it.id})">Add</button>\n                <button class="btn btn-sm btn-outline-secondary" onclick="openDetail(${it.id})">Details</button>\n              </div>\n            </div>\n          </div>\n        `;
+                            grid.appendChild(el);
+                        });
+                    }
+
+                    // Filter function
+                    function filterCuisine(c) {
+                        window.currentFilter = c;
+                        // update active button
+                        document.querySelectorAll('.category-btns .btn').forEach(b => b.classList.remove('active'));
+                        const map = { all: 0, north: 1, south: 2, dessert: 3, korean: 4 };
+                        const btns = document.querySelectorAll('.category-btns .btn');
+                        if (map[c] !== undefined && btns[map[c]]) btns[map[c]].classList.add('active');
+                        renderMenu();
+                    }
+
+                    // Add to cart
+                    function addToCart(id) {
+                        const found = cart.find(ci => ci.id === id);
+                        if (found) found.qty++;
+                        else cart.push({ id, qty: 1 });
+                        renderCart();
+                    }
+
+                    function renderCart() {
+                        const cartList = document.getElementById('cartList');
+                        const cartEmptyMsg = document.getElementById('cartEmptyMsg');
+                        cartList.innerHTML = '';
+                        if (cart.length === 0) {
+                            cartEmptyMsg.style.display = 'block';
+                            document.getElementById('checkoutBtn').disabled = true;
+                            document.getElementById('cartTotal').textContent = formatCurrency(0);
+                            return;
+                        }
+                        cartEmptyMsg.style.display = 'none';
+                        let total = 0;
+                        cart.forEach(ci => {
+                            const item = menuItems.find(m => m.id === ci.id);
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                            li.innerHTML = `\n          <div>\n            <strong>${item.title}</strong><br>\n            <small class="text-muted">${formatCurrency(item.price)} × ${ci.qty}</small>\n          </div>\n          <div class="text-end">\n            <div>${formatCurrency(item.price * ci.qty)}</div>\n            <div class="mt-1 btn-group btn-group-sm" role="group">\n              <button class="btn btn-outline-secondary" onclick="changeQty(${ci.id}, -1)">−</button>\n              <button class="btn btn-outline-secondary" onclick="changeQty(${ci.id}, 1)">+</button>\n              <button class="btn btn-outline-danger" onclick="removeFromCart(${ci.id})">Remove</button>\n            </div>\n          </div>\n        `;
+                            cartList.appendChild(li);
+                            total += item.price * ci.qty;
+                        });
+                        document.getElementById('cartTotal').textContent = formatCurrency(total);
+                        document.getElementById('checkoutBtn').disabled = false;
+                    }
+
+                    function changeQty(id, delta) {
+                        const ci = cart.find(x => x.id === id);
+                        if (!ci) return;
+                        ci.qty += delta;
+                        if (ci.qty <= 0) cart = cart.filter(x => x.id !== id);
+                        renderCart();
+                    }
+                    function removeFromCart(id) {
+                        cart = cart.filter(x => x.id !== id);
+                        renderCart();
+                    }
+
+                    function checkout() {
+                        if (cart.length === 0) return alert('Your cart is empty.');
+                        // Demo behavior — in real site you'd send to backend
+                        const orderSummary = cart.map(ci => {
+                            const it = menuItems.find(m => m.id === ci.id);
+                            return `${it.title} x${ci.qty}`;
+                        }).join('\n');
+                        alert('Demo checkout:\n' + orderSummary + '\n\nThank you! This is a demo; integrate with your payments backend to complete orders.');
+                        cart = [];
+                        renderCart();
+                    }
+
+                    // Dish detail modal (simple)
+                    function openDetail(id) {
+                        const it = menuItems.find(m => m.id === id);
+                        if (!it) return;
+                        const modalHtml = `
+        <div class="modal fade" id="detailModal" tabindex="-1">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body p-0">
+                <img src="${it.img}" alt="${it.title}" style="width:100%; height:320px; object-fit:cover">
+                <div class="p-3">
+                  <h4>${it.title} <span class="badge-veg ms-2">Veg</span></h4>
+                  <p class="text-muted">${it.desc}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="h5 mb-0">${formatCurrency(it.price)}</div>
+                    <div>
+                      <button class="btn btn-primary" onclick="addToCart(${it.id}); document.querySelector('#detailModal .btn-close')?.click();">Add to cart</button>
+                      <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = modalHtml;
+                        document.body.appendChild(wrapper);
+                        const modalEl = wrapper.querySelector('#detailModal');
+                        const bsModal = new bootstrap.Modal(modalEl);
+                        bsModal.show();
+                        modalEl.addEventListener('hidden.bs.modal', () => wrapper.remove());
+                    }
+
+                    /***********************
+                     * Reviews
+                     ***********************/
+                    function renderReviews() {
+                        const out = document.getElementById('reviewsList');
+                        out.innerHTML = '';
+                        if (reviews.length === 0) out.innerHTML = '<div class="text-muted">No reviews yet. Be the first!</div>';
+                        reviews.slice().reverse().forEach(r => {
+                            const el = document.createElement('div');
+                            el.className = 'review';
+                            el.innerHTML = `
+          <div class="d-flex justify-content-between align-items-start mb-1">
+            <div><strong>${escapeHtml(r.name)}</strong></div>
+            <div><small class="text-muted">${r.date}</small></div>
+          </div>
+          <div class="mb-1">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+          <div class="text-muted">${escapeHtml(r.text)}</div>
+        `;
+                            out.appendChild(el);
+                        });
+                    }
+
+                    function addReview() {
+                        const name = document.getElementById('reviewName').value.trim() || 'Guest';
+                        const text = document.getElementById('reviewText').value.trim();
+                        const rating = parseInt(document.getElementById('reviewRating').value, 10) || 5;
+                        if (!text) return alert('Please enter a review text.');
+                        const date = new Date().toISOString().slice(0, 10);
+                        reviews.push({ name, rating, text, date });
+                        document.getElementById('reviewName').value = '';
+                        document.getElementById('reviewText').value = '';
+                        renderReviews();
+                        alert('Thanks for your review!');
+                    }
+
+                    // Contact form demo
+                    function sendContact() {
+                        const name = document.getElementById('contactName').value.trim();
+                        const email = document.getElementById('contactEmail').value.trim();
+                        const phone = document.getElementById('contactPhone').value.trim();
+                        const msg = document.getElementById('contactMsg').value.trim();
+                        if (!name || !email || !msg) return alert('Please fill required fields.');
+                        // Demo: show summary. Replace with AJAX post to a backend endpoint in production.
+                        alert('Message sent (demo)\n\n' + name + '\n' + email + '\n' + (phone ? phone + '\n' : '') + msg);
+                        document.getElementById('contactName').value = '';
+                        document.getElementById('contactEmail').value = '';
+                        document.getElementById('contactPhone').value = '';
+                        document.getElementById('contactMsg').value = '';
+                    }
+
+                    // Reservation demo
+                    function makeReservation() {
+                        const n = document.getElementById('resName').value.trim();
+                        const phone = document.getElementById('resPhone').value.trim();
+                        const date = document.getElementById('resDate').value;
+                        const time = document.getElementById('resTime').value;
+                        const people = document.getElementById('resPeople').value;
+                        const note = document.getElementById('resNote').value.trim();
+                        if (!n || !phone || !date || !time) return alert('Please fill required fields.');
+                        // Demo ack
+                        const msg = `Reservation requested:\nName: ${n}\nPhone: ${phone}\nFor: ${people} people\nOn: ${date} ${time}\nNotes: ${note}\n\nThis is a demo. Integrate with your booking backend to confirm.`;
+                        alert(msg);
+                        // Hide modal
+                        const reserveModal = document.getElementById('reserveModal');
+                        const bs = bootstrap.Modal.getInstance(reserveModal);
+                        if (bs) bs.hide();
+                        // reset form
+                        document.getElementById('resName').value = ''; document.getElementById('resPhone').value = ''; document.getElementById('resDate').value = ''; document.getElementById('resTime').value = ''; document.getElementById('resNote').value = '';
+                    }
+
+                    // small helpers
+                    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]; }); }
+
+                    // initial render
+                    filterCuisine('all');
+                    renderReviews();
+                    renderCart();
+
+                    // improve accessibility: keyboard enter to search
+                    document.getElementById('searchInput').addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') { e.preventDefault(); renderMenu(); }
+                    });
+
+                    // Make website "actively respond" — quick animations on focus for inputs
+                    document.querySelectorAll('input, textarea, select').forEach(inp => {
+                        inp.addEventListener('focus', () => inp.classList.add('shadow-sm'));
+                        inp.addEventListener('blur', () => inp.classList.remove('shadow-sm'));
+                    });
+                </script>
